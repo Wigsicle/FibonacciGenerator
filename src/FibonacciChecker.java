@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class FibonacciChecker {
 
@@ -7,7 +8,7 @@ public class FibonacciChecker {
         ReadFile reader = new ReadFile();
         try {
             // Read the sequence from the file
-            int[] sequence = reader.readFile(filePath);
+            BigInteger[] sequence = reader.readFile(filePath);
 
             if (sequence == null || sequence.length == 0) {
                 System.out.println("Sequence is empty or could not be read from the file.");
@@ -25,13 +26,13 @@ public class FibonacciChecker {
         }
     }
 
-    public static boolean isFibonacci(int[] sequence) {
+    public static boolean isFibonacci(BigInteger[] sequence) {
         if (sequence.length < 3) {
             return false; // Fibonacci sequence should contain at least 3 numbers
         }
 
         for (int i = 2; i < sequence.length; i++) {
-            if (sequence[i] != sequence[i - 1] + sequence[i - 2]) {
+            if (!sequence[i].equals(sequence[i - 1].add(sequence[i - 2]))) {
                 return false; // The current number is not the sum of the two preceding numbers
             }
         }

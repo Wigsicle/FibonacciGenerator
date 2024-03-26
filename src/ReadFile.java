@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class ReadFile {
-    public int[] readFile(String filePath) throws IOException {
+    public BigInteger[] readFile(String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         int count = 0;
@@ -20,11 +21,11 @@ public class ReadFile {
         // Skip the first line
         reader.readLine();
 
-        int[] sequence = new int[count - 1]; // Subtract 1 to exclude the first line
+        BigInteger[] sequence = new BigInteger[count - 1]; // Subtract 1 to exclude the first line
         int index = 0;
 
         while ((line = reader.readLine()) != null) {
-            sequence[index] = Integer.parseInt(line);
+            sequence[index] = new BigInteger(line);
             index++;
         }
 
