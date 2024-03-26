@@ -1,34 +1,34 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ReadFile {
+    public int[] readFile(String filePath) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        int count = 0;
 
-    public int[] readFile(String filePath) {
-        List<Integer> sequenceList = new ArrayList<>();
-        try {
-            File myObj = new File(filePath);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] numbers = data.split("\\s+");
-                for (String number : numbers) {
-                    sequenceList.add(Integer.parseInt(number));
-                }
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        // Count the number of lines in the file
+        while (reader.readLine() != null) {
+            count++;
         }
 
-        // Convert list to array
-        int[] sequence = new int[sequenceList.size()];
-        for (int i = 0; i < sequenceList.size(); i++) {
-            sequence[i] = sequenceList.get(i);
+        // Reset the reader to read from the beginning of the file
+        reader.close();
+        reader = new BufferedReader(new FileReader(filePath));
+
+        // Skip the first line
+        reader.readLine();
+
+        int[] sequence = new int[count - 1]; // Subtract 1 to exclude the first line
+        int index = 0;
+
+        while ((line = reader.readLine()) != null) {
+            sequence[index] = Integer.parseInt(line);
+            index++;
         }
+
+        reader.close();
         return sequence;
     }
 }

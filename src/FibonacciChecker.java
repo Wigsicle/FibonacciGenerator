@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FibonacciChecker {
@@ -16,8 +17,11 @@ public class FibonacciChecker {
             // Check if the sequence is a Fibonacci sequence
             return isFibonacci(sequence);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
-            return false;
+            throw new NumberFormatException("File Not In Number Format");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

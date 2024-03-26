@@ -1,10 +1,10 @@
-import java.io.File;  // Import the File class
-import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.File;
+import java.io.IOException;
 
 public class CreateFile {
     public boolean createFile(String filePath) {
         try {
-            File myObj = new File("fibonacci.txt");
+            File myObj = new File(filePath);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
