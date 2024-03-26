@@ -1,13 +1,16 @@
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class Main {
     private static final String FILEPATH = "./fibonacci.txt";
 
     static String printFibonacci(int count) {
-        int n1 = 0, n2 = 1, n3;
+        BigInteger n1 = BigInteger.ZERO;
+        BigInteger n2 = BigInteger.ONE;
+        BigInteger n3;
         StringBuilder fibonacciSequence = new StringBuilder(1001 + "\n" + n1 + "\n" + n2);
         for (int i = 2; i < count; i++) {
-            n3 = n1 + n2;
+            n3 = n1.add(n2);
             n1 = n2;
             n2 = n3;
             fibonacciSequence.append("\n").append(n3);
